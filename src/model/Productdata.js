@@ -13,5 +13,5 @@ var NewProductSchema = new Schema({
     imageUrl : String
 });
 
-var Productdata = mongoose.model('product', NewProductSchema);
+var Productdata = mongoose.model('products', NewProductSchema);
 module.exports = Productdata;

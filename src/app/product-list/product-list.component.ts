@@ -4,7 +4,7 @@ import { ProductService } from '../product.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
-import { Product } from '../product';
+
 
 
 
@@ -37,7 +37,7 @@ export class ProductListComponent implements OnInit {
     if(buttonType==="Edit") {
         this.id = id;
         // this.getProductDetails(id);
-        this.router.navigate(['/edit']);  
+        this.router.navigate(['/edit/'+id]);  
        
     }
     if(buttonType==="Delete"){

@@ -1,5 +1,5 @@
 <div class="card">
-    <form (ngSubmit)="EditProduct()">
+    <form (ngSubmit)="EditProduct(product,product._id)" >
         <div class="card-header">
             {{title}}
         </div>
@@ -8,38 +8,37 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <!-- product: Product = { prod_id: '', prod_name: '', prod_code: '', release_code: '', prod_desc: '', prod_price: null, starrating: null, image: null }; -->
 
                             <td><label>Product Id</label></td>
-                            <td><input type="text" name="p_id" [(ngModel)]="product.prod_id" value="product.productId"/></td>
+                            <td><input type="text" name="p_id" value={{product.productId}} [(ngModel)]="product.productId"/></td>
                         </tr>
                         <tr>
                             <td><label>Product Name</label></td>
-                            <td><input type="text" name="p_name" [(ngModel)]="product.prod_name"/></td>
+                            <td><input type="text" name="p_name" value={{product.productName}} [(ngModel)]="product.productName"/></td>
                         </tr>
                         <tr>
                             <td><label>Product Code</label></td>
-                            <td><input type="text" name="p_code" [(ngModel)]="product.prod_code"/></td>
+                            <td><input type="text" name="p_code" value={{product.productCode}} [(ngModel)]="product.productCode"/></td>
                         </tr>
                         <tr>
                             <td><label>Release Date</label></td>
-                            <td><input type="date" name="p_date" [(ngModel)]="product.release_code"/></td>
+                            <td><input type="date" name="p_date" value={{product.releaseDate}} [(ngModel)]="product.releaseDate"/></td>
                         </tr>
                         <tr>
                             <td><label>Description</label></td>
-                            <td><input type="text" name="p_description" [(ngModel)]="product.prod_desc"/></td>
+                            <td><input type="text" name="p_description" value={{product.description}} [(ngModel)]="product.description"/></td>
                         </tr>
                         <tr>
                             <td><label>Price</label></td>
-                            <td><input type="number" name="p_price" [(ngModel)]="product.prod_price"/></td>
+                            <td><input type="number" name="p_price" value={{product.price}} [(ngModel)]="product.price"/></td>
                         </tr>
                         <tr>
                             <td><label>Star Rating</label></td>
-                            <td><input type="number" name="p_starrating" [(ngModel)]="product.starrating"/></td>
+                            <td><input type="number" name="p_starrating" value={{product.starRating}} [(ngModel)]="product.starRating"/></td>
                         </tr>
                         <tr>
                             <td><label>Image</label></td>
-                            <td><input type="text" name="p_image" [(ngModel)]="product.image"/></td>
+                            <td><input type="text" name="p_image" value={{product.imageUrl}} [(ngModel)]="product.imageUrl"/></td>
                         </tr>
                         <tr>
                             <td></td>

@@ -12,7 +12,7 @@ export class NewProductComponent implements OnInit {
   title:String = "Add Product";
   constructor(private productService: ProductService,private router:Router){}
 
-  productItem = new ProductModel(null,null,null,null,null,null,null,null);
+  productItem = new ProductModel(null,null,null,null,null,null,null,null,null);
 
   ngOnInit(){
     

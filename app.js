@@ -16,23 +16,29 @@ app.get('/products', function (req, res) {
     });
 });
 
-app.get('/product', function (req, res) {
+app.get('/product/:id', function (req, res) {
     console.log("test3");
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     console.log(req.params);
     const id = req.params.id;
-    ProductData.findOne({ _id: id })
-        .then(function (product) {
-            console.log(product);
-            res.render('edit', {
+    console.log(ProductData);
+        ProductData.findOne({_id: id },function(err,product){
 
-                product
-            });
+            if(err){
+                console.log(err);
+            }else{
+                console.log(product);
+                res.send(product);
+            }
         });
-
+        // .then(function (product) {
+        //     console.log(product);
+        //     res.send(product);
+        // });
 });
 app.post('/insert', function (req, res) {
+    console.log("insert");
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     console.log(req.body);
@@ -41,19 +47,49 @@ app.post('/insert', function (req, res) {
         productName: req.body.product.productName,
         productCode: req.body.product.productCode,
         releaseDate: req.body.product.releaseDate,
-        description: req.body.product.decription,
+        description: req.body.product.description,
         price: req.body.product.price,
         starRating: req.body.product.starRating,
         imageUrl: req.body.product.imageUrl
     };
+    console.log(product);
     var product = new ProductData(product);
     product.save();
 });
+
+app.post('/edit/:id', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    console.log(req.body);
+
+    var id = req.params.id;
+    console.log("id :" + id);
+    console.log("req.body :"+req.body.product.productId);
+    console.log("req.body :"+req.body.product.productName);
+    console.log("req.body :"+req.body.product.productCode);
+    console.log("req.body :"+req.body.product.releaseDate);
+    console.log("req.body :"+req.body.product.description);
+    console.log("req.body :"+req.body.product.price);
+    console.log("req.body :"+req.body.product.imageUrl);
+    console.log("req.body :"+req.body.product.starRating);
+ 
+
+    query = { _id: id };
+    var newvalues = { $set: { productId: req.body.product.productId, productName: req.body.product.productName, productCode: req.body.product.productCode, releaseDate: req.body.product.releaseDate, description:req.body.product.description,price:req.body.product.price,starRating:req.body.product.starRating,imageUrl:req.body.product.imageUrl } };
+    ProductData.updateOne(query, newvalues, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.redirect("/");
+    });
+});
+
+
 
 
 app.post('/insertnewuser', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    console.log("test4");
     console.log(req.body);
     var user = {
         Name: req.body.user.Name,
