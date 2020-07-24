@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,21 +13,9 @@ export class ProductService {
   }
   getProduct(id){
     console.log("id :"+id);
-    // let httpParams = new HttpParams().set('id', id);
-
-    // return this.http.get("http://localhost:3000/product",{params:httpParams});
-
+   
     return this.http.get("http://localhost:3000/product/"+id);
   }
-
-
-  // getProduct(id): Observable<Product> {
-  //   const url = `${apiUrl}/${id}`;
-  //   return this.http.get<Product>(url).pipe(
-  //     tap(_ => console.log(`fetched product id=${id}`)),
-  //     catchError(this.handleError<Product>(`getProduct id=${id}`))
-  //   );
-  // }
 
   newProduct(item){
     return this.http.post("http://localhost:3000/insert",{"product":item})
@@ -44,6 +28,7 @@ export class ProductService {
   }
 
   deleteProduct(id){
-    return this.http.get("http://localhost:3000/delete",{params:{'id':id}});
+    console.log('delete product + id:'+id);
+    return this.http.post("http://localhost:3000/delete/"+id,{}).subscribe(data=>{console.log(data)})
   }
 }

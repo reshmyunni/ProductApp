@@ -34,7 +34,7 @@
                             <td>{{product.starRating}}</td>
                             
                             <td><a [routerLink]="['/edit', product._id]">Edit</a></td>
-                            <td><button type="submit" (click)="onSubmit('Delete',product._id)">Delete</button></td>
+                            <td><a [routerLink]="['/delete', product._id]">Delete</a></td>
 
                     </tbody>
                 </table>

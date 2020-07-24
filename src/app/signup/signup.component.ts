@@ -14,7 +14,7 @@ export class SignupComponent implements OnInit {
   title:String = "Signup";
   constructor(private userService: UserService,private router:Router){}
 
-  newUser = new UserModel(null,null,null,null,null,null);
+  newUser = new UserModel(null,null,null,null,null,null,null);
 
   ngOnInit(){
     

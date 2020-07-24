@@ -42,7 +42,7 @@ export class ProductListComponent implements OnInit {
     }
     if(buttonType==="Delete"){
         console.log("Delete"+id);
-        this.deleteProduct(id);
+        this.router.navigate(['/delete/'+id]);  
     }
 
 }
@@ -55,17 +55,17 @@ export class ProductListComponent implements OnInit {
     
   }
 
-  deleteProduct(id) {
-    // this.isLoadingResults = true;
-    this.productService.deleteProduct(id)
-      .subscribe(res => {
-          // this.isLoadingResults = false;
-          this.router.navigate(['/products']);
-        }, (err) => {
-          console.log(err);
-          // this.isLoadingResults = false;
-        }
-      );
-  }
+  // deleteProduct(id) {
+  //   // this.isLoadingResults = true;
+  //   this.productService.deleteProduct(id)
+  //     .subscribe(res => {
+  //         // this.isLoadingResults = false;
+  //         this.router.navigate(['/products']);
+  //       }, (err) => {
+  //         console.log(err);
+  //         // this.isLoadingResults = false;
+  //       }
+  //     );
+  // }
 
 }

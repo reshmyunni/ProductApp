@@ -63,16 +63,7 @@ app.post('/edit/:id', function (req, res) {
     console.log(req.body);
 
     var id = req.params.id;
-    console.log("id :" + id);
-    console.log("req.body :"+req.body.product.productId);
-    console.log("req.body :"+req.body.product.productName);
-    console.log("req.body :"+req.body.product.productCode);
-    console.log("req.body :"+req.body.product.releaseDate);
-    console.log("req.body :"+req.body.product.description);
-    console.log("req.body :"+req.body.product.price);
-    console.log("req.body :"+req.body.product.imageUrl);
-    console.log("req.body :"+req.body.product.starRating);
- 
+    
 
     query = { _id: id };
     var newvalues = { $set: { productId: req.body.product.productId, productName: req.body.product.productName, productCode: req.body.product.productCode, releaseDate: req.body.product.releaseDate, description:req.body.product.description,price:req.body.product.price,starRating:req.body.product.starRating,imageUrl:req.body.product.imageUrl } };
@@ -94,8 +85,8 @@ app.post('/insertnewuser', function (req, res) {
     var user = {
         Name: req.body.user.Name,
         Address: req.body.user.Address,
-        Email: req.body.user.Phone,
-        Phone: req.body.user.Email,
+        Email: req.body.user.Email,
+        Phone: req.body.user.Phone,
         Username: req.body.user.Username,
         Password: req.body.user.Password,
         
@@ -103,17 +94,45 @@ app.post('/insertnewuser', function (req, res) {
     var user = new Userdata(user);
     user.save();
 });
-//insertnewuser
 
-app.get('/delete', function (req, res) {
+app.post('/login', function (req, res) {
+
+    const username = req.body.user.username;
+    console.log("username :"+username);
+    const password = req.body.user.password;
+    console.log("password :"+password);
+
+    Signupdata.findOne({ username: username})
+        .then(function (user) {
+            if(user){
+            if(password === user.password){
+                res.redirect("/");
+            }else{
+                res.redirect("/signin");
+            }
+            // console.log("User :"+user.password)
+            
+                
+            }
+
+        });
+
+
+});
+
+
+app.post('/delete/:id', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    console.log("app delete");
     var id = req.params.id;
     console.log("id :" + id);
-    Bookdata.deleteOne({ _id: id })
+    ProductData.deleteOne({ _id: id })
         .then(function (result) {
             console.log(result);
 
             console.log("deleted");
-            res.redirect("/products");
+            res.redirect("/");
 
 
         });

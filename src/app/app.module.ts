@@ -14,6 +14,7 @@ import { NewProductComponent } from './new-product/new-product.component';
 import { EditproductComponent } from './editproduct/editproduct.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { DeleteproductComponent } from './deleteproduct/deleteproduct.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SignupComponent } from './signup/signup.component';
     NewProductComponent,
     EditproductComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    DeleteproductComponent
   ],
   imports: [
     BrowserModule,
